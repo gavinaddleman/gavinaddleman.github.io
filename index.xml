@@ -10,61 +10,1839 @@
 <atom:link href="https://your-website-url.example.com/index.xml" rel="self" type="application/rss+xml"/>
 <description>A website about sports and sports data</description>
 <generator>quarto-1.9.36</generator>
-<lastBuildDate>Mon, 30 Mar 2026 05:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 10 Apr 2026 05:00:00 GMT</lastBuildDate>
 <item>
-  <title>Post With Code</title>
-  <dc:creator>Harlow Malloc</dc:creator>
-  <link>https://your-website-url.example.com/posts/post-with-code/</link>
+  <title>Are sweepers and sliders really different pitches?</title>
+  <dc:creator>Gavin Addleman</dc:creator>
+  <link>https://your-website-url.example.com/posts/sweepers-vs-sliders/</link>
   <description><![CDATA[ 
 
 
 
 
 
-<p>This is a post with executable code.</p>
+<p>Many Major League Baseball fans that watch a handful of regular season games every season might see the pitches named sweeper and slider and go, “They’re obviously the same pitch, how can they be different?” If you know what to look for, it can become a lot easier to not just know the difference in how each pitch looks and moves, but also the average batted ball outcomes from both pitches.</p>
+<p>Baseball pitches are always evolving and even just slight changes in many factors like slight differences in grip on the baseball, finger pressure, arm angle, release point, velocity, spin rate, environmental factors, body mechanics and so much more can change how a pitch moves.</p>
+<p>Sweepers and sliders are no different. The pitches may seem similar at first glance, but when you dive into them, they’re very different pitches.</p>
+<p>Let’s first look at the history of the sweeper through Baseball Savant’s data on every sweeper thrown in MLB regular season games since 2012, the first year pitchers threw at least 100 total sweepers per pitcher.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="dv" style="color: #AD0000;
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+font-style: inherit;">library</span>(tidyverse)</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+font-style: inherit;">library</span>(gt)</span>
+<span id="cb1-3"></span>
+<span id="cb1-4">svs <span class="ot" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">1</span></span></code></pre></div></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_csv</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"sliders_v_sweepers.csv"</span>)</span>
+<span id="cb1-5"></span>
+<span id="cb1-6">tot_slider <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> svs <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(pitch_type<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"SL"</span>)</span>
+<span id="cb1-7">tot_sweeper <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> svs <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(pitch_type<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ST"</span>)</span>
+<span id="cb1-8"></span>
+<span id="cb1-9">s12 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_csv</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"svs12.csv"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Season =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"2012"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(pitch_type, Season) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pitches =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(pitches))</span>
+<span id="cb1-10">s13 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_csv</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"svs13.csv"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Season =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"2013"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(pitch_type, Season) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pitches =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(pitches))</span>
+<span id="cb1-11">s14 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_csv</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"svs14.csv"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Season =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"2014"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(pitch_type, Season) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pitches =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(pitches))</span>
+<span id="cb1-12">s15 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_csv</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"svs15.csv"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Season =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"2015"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(pitch_type, Season) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_xwoba =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(xwoba), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_swings =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(swings), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_whiffs =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(whiffs), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pitches =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(pitches))</span>
+<span id="cb1-13">s16 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_csv</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"svs16.csv"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Season =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"2016"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(pitch_type, Season) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_xwoba =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(xwoba), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_swings =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(swings), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_whiffs =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(whiffs), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pitches =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(pitches))</span>
+<span id="cb1-14">s17 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_csv</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"svs17.csv"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Season =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"2017"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(pitch_type, Season) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_xwoba =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(xwoba), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_swings =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(swings), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_whiffs =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(whiffs), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pitches =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(pitches)) </span>
+<span id="cb1-15">s18 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_csv</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"svs18.csv"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Season =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"2018"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(pitch_type, Season) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_xwoba =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(xwoba), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_swings =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(swings), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_whiffs =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(whiffs), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pitches =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(pitches)) </span>
+<span id="cb1-16">s19 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_csv</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"svs19.csv"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Season =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"2019"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(pitch_type, Season) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_xwoba =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(xwoba), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_swings =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(swings), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_whiffs =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(whiffs), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pitches =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(pitches)) </span>
+<span id="cb1-17">s20 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_csv</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"svs20.csv"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Season =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"2020"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(pitch_type, Season) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_xwoba =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(xwoba), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_swings =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(swings), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_whiffs =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(whiffs), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pitches =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(pitches)) </span>
+<span id="cb1-18">s21 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_csv</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"svs21.csv"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Season =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"2021"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(pitch_type, Season) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_xwoba =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(xwoba), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_swings =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(swings), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_whiffs =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(whiffs), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pitches =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(pitches)) </span>
+<span id="cb1-19">s22 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_csv</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"svs22.csv"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Season =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"2022"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(pitch_type, Season) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_xwoba =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(xwoba), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_swings =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(swings), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_whiffs =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(whiffs), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pitches =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(pitches)) </span>
+<span id="cb1-20">s23 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_csv</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"svs23.csv"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Season =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"2023"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(pitch_type, Season) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_xwoba =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(xwoba), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_swings =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(swings), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_whiffs =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(whiffs), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pitches =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(pitches)) </span>
+<span id="cb1-21">s24 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_csv</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"svs24.csv"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Season =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"2024"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(pitch_type, Season) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_xwoba =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(xwoba), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_swings =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(swings), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_whiffs =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(whiffs), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pitches =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(pitches)) </span>
+<span id="cb1-22">s25 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_csv</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"svs25.csv"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Season =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"2025"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(pitch_type, Season) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_xwoba =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(xwoba), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_swings =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(swings), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_whiffs =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(whiffs), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pitches =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(pitches)) </span>
+<span id="cb1-23"></span>
+<span id="cb1-24">s_tot <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">bind_rows</span>(s12, s13, s14, s15, s16, s17, s18, s19, s20, s21, s22, s23, s24, s25)</span>
+<span id="cb1-25">slider <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> s_tot <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span> (pitch_type <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"SL"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Pitch =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Slider"</span>)</span>
+<span id="cb1-26">sweeper <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> s_tot <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span> (pitch_type <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ST"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Pitch =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Sweeper"</span>)</span>
+<span id="cb1-27">svs_tot <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">bind_rows</span>(slider, sweeper)</span>
+<span id="cb1-28"></span>
+<span id="cb1-29">pre_sweeper <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> sweeper <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(Season <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"2020"</span>)</span>
+<span id="cb1-30">post_sweeper <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> sweeper <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(Season <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"2020"</span>)</span>
+<span id="cb1-31"></span>
+<span id="cb1-32">post2020_sweeper <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> sweeper <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span> (Season <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2020</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">select</span>(Pitch, Season, avg_xwoba)</span>
+<span id="cb1-33">post2020_slider <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> slider <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span> (Season <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2020</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">select</span>(Pitch, Season, avg_xwoba)</span>
+<span id="cb1-34">post2020_ss <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">bind_cols</span>(post2020_sweeper, post2020_slider) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ungroup</span>() </span>
+<span id="cb1-35"></span>
+<span id="cb1-36"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb1-37">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_bar</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data=</span>pre_sweeper, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span>Season, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">weight=</span>pitches), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"lightgrey"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-38">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_bar</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data=</span>post_sweeper, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span>Season, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">weight=</span>pitches), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"darkred"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-39">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">coord_flip</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-40">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_minimal</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb1-41">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(</span>
+<span id="cb1-42">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">""</span>,</span>
+<span id="cb1-43">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Sweepers Thrown"</span>,</span>
+<span id="cb1-44">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Why the great rise in sweeper usage between 2021 and 2025?"</span>, </span>
+<span id="cb1-45">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">subtitle=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"After stagnating in the 2010s, the first years with min. 100 sweepers thrown, the number of sweepers thrown exploded</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">starting in 2021. Total sweepers thrown by MLB pitchers as of the end of the 2025 MLB season."</span>,</span>
+<span id="cb1-46">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Source: Baseball Savant | By Gavin Addleman"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-47">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_minimal</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-48">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(</span>
+<span id="cb1-49">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">16</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">face =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>),</span>
+<span id="cb1-50">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span>),</span>
+<span id="cb1-51">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.subtitle =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">9.5</span>),</span>
+<span id="cb1-52">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.text.y =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">hjust=</span>.<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">45</span>),</span>
+<span id="cb1-53">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.text.x =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">hjust=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>),</span>
+<span id="cb1-54">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.title.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"plot"</span></span>
+<span id="cb1-55">  )</span></code></pre></div></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://your-website-url.example.com/posts/sweepers-vs-sliders/index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
+</div>
+<p>What do we see here? Sweepers have been on the rise for the past five seasons, but also sweepers have existed as a separate pitch, even if it’s in a somewhat limited capacity.</p>
+<p>Will the rise in the trendy sweeper continue in 2026 and beyond? Only time will tell.</p>
+<p>The sweeper, a pitch that has existed in some way or form as early as 2008, didn’t become a widely used or recognized pitch separate from the slider until 2021 when teams like the Houston Astros and Los Angeles Dodgers popularized the pitch through pitchers like Lance McCullers, Christian Javier, Walker Buehler and Blake Trienen. In 2023, the sweeper was officially first recognized as its own pitch by MLB and Baseball Savant’s Statcast.</p>
+<p>Cool, sweepers have been thrown more and more each year since 2021, but why? If you look at the movement profiles of sweepers and sliders, it’s easy to see why.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb2-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data=</span>tot_slider, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span>api_break_x_arm, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>api_break_z_with_gravity), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"grey"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data=</span>tot_sweeper, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span>api_break_x_arm, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>api_break_z_with_gravity), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"red"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(</span>
+<span id="cb2-5">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Horizonal Break (Feet)"</span>,</span>
+<span id="cb2-6">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Vertical Break (Feet)"</span>,</span>
+<span id="cb2-7">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"How are sweepers and sliders different pitches?"</span>, </span>
+<span id="cb2-8">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">subtitle=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Average sweeper (in red) and slider (in grey) movement patterns from each pitcher to throw at least 100 pitches</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">since 2008. Sweepers and sliders have significantly different moevement patterns on average."</span>,</span>
+<span id="cb2-9">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Source: Baseball Savant | By Gavin Addleman"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-10">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_minimal</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-11">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(</span>
+<span id="cb2-12">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">16</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">face =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>),</span>
+<span id="cb2-13">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span>),</span>
+<span id="cb2-14">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.subtitle =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>),</span>
+<span id="cb2-15">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.text.y =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">hjust=</span>.<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">45</span>),</span>
+<span id="cb2-16">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.text.x =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">hjust=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>),</span>
+<span id="cb2-17">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.title.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"plot"</span></span>
+<span id="cb2-18">  )</span></code></pre></div></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://your-website-url.example.com/posts/sweepers-vs-sliders/index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As you can tell, sweepers generally move at least a foot to the glove side of the pitcher, while sliders tend to be tighter breaking, with some even breaking more like a screwball, to the arm side of the pitcher.</p>
+<p>If a pitcher throws both a sweeper and a slider, they can use an aspect of pitching that has become a buzzword in MLB pitching analytic departments in recent seasons, pitch tunneling. In short, pitch tunneling is where pitchers will try to make their different pitches look the same at the same location in the air as the pitch is thrown for as long as possible. So, if a pitcher throwing both pitches can tunnel both their sweeper and slider well, that can make it very difficult on the hitter to determine which pitch is coming.</p>
+<p>If you’re a pitcher, you might be wondering which pitch you should start developing to be the most effective you can be on the mound. Yes, you can just throw both, but in this scenario you can only choose one.</p>
+<p>The general goal of pitching is to get outs and limit runs. One way to determine if a pitch, especially a breaking ball like a sweeper or a slider, is an effective pitch is whether or not the pitch can limit quality contact by batters. A statistic that does exactly that is xwOBA, expected weighted on base average, a stat calculated using exit velocity, launch angle, among other sabermetric stats, to get a number that shows the quality of contact that should be expected based on previous results.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">post2020_ss <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">select</span>(Season...<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>, Pitch...<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, avg_xwoba...<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>, Season...<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">7</span>, Pitch...<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>, avg_xwoba...<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb3-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gt</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb3-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cols_label</span>(</span>
+<span id="cb3-4">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_xwoba...4 =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"xwOBA"</span>,</span>
+<span id="cb3-5">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">avg_xwoba...8 =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"xwOBA"</span>,</span>
+<span id="cb3-6">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Pitch...2 =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Pitch"</span>,</span>
+<span id="cb3-7">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Pitch...6 =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Pitch"</span>,</span>
+<span id="cb3-8">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Season...3 =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Season"</span>,</span>
+<span id="cb3-9">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Season...7 =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Season"</span></span>
+<span id="cb3-10">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-11">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data_color</span>(</span>
+<span id="cb3-12">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">columns =</span> avg_xwoba...<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>,</span>
+<span id="cb3-13">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">method =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"numeric"</span>,</span>
+<span id="cb3-14">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">palette =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"red"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"white"</span>),</span>
+<span id="cb3-15">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">domain =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.2461785</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.3023062</span>)</span>
+<span id="cb3-16">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb3-17">   <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data_color</span>(</span>
+<span id="cb3-18">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">columns =</span> avg_xwoba...<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span>,</span>
+<span id="cb3-19">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">method =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"numeric"</span>,</span>
+<span id="cb3-20">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">palette =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"red"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"white"</span>),</span>
+<span id="cb3-21">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">domain =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.2461785</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.3023062</span>)</span>
+<span id="cb3-22">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb3-23">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tab_header</span>(</span>
+<span id="cb3-24">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Do sweepers or sliders limit quality batter contact better?"</span>,</span>
+<span id="cb3-25">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">subtitle =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Sweepers limit quality contact better than sliders over the past five MLB seasons.."</span></span>
+<span id="cb3-26">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tab_style</span>(</span>
+<span id="cb3-27">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">style =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cell_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"black"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">weight =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">align =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"left"</span>),</span>
+<span id="cb3-28">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">locations =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cells_title</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"title"</span>)</span>
+<span id="cb3-29">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tab_style</span>(</span>
+<span id="cb3-30">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">style =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cell_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"black"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">align =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"left"</span>),</span>
+<span id="cb3-31">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">locations =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cells_title</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"subtitle"</span>)</span>
+<span id="cb3-32">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-33">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tab_source_note</span>(</span>
+<span id="cb3-34">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">source_note =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">md</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"**Source:** Baseball Savant   |  **By:** Gavin Addleman"</span>)</span>
+<span id="cb3-35">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-36">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tab_style</span>(</span>
+<span id="cb3-37">     <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">locations =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cells_column_labels</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">columns =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">everything</span>()),</span>
+<span id="cb3-38">     <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">style =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(</span>
+<span id="cb3-39">       <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cell_borders</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sides =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bottom"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">weight =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">px</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>)),</span>
+<span id="cb3-40">       <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cell_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">weight =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span>)</span>
+<span id="cb3-41">     )</span>
+<span id="cb3-42">   ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-43">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">opt_row_striping</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb3-44">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">opt_table_lines</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb3-45">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">fmt_number</span>(</span>
+<span id="cb3-46">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">decimals =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span></span>
+<span id="cb3-47">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb3-48">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cols_align</span>(</span>
+<span id="cb3-49">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">align =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"center"</span>)</span></code></pre></div></div>
+</details>
+<div class="cell-output-display">
+<div id="pnrewzilfs" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#pnrewzilfs table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#pnrewzilfs thead, #pnrewzilfs tbody, #pnrewzilfs tfoot, #pnrewzilfs tr, #pnrewzilfs td, #pnrewzilfs th {
+  border-style: none;
+}
+
+#pnrewzilfs p {
+  margin: 0;
+  padding: 0;
+}
+
+#pnrewzilfs .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#pnrewzilfs .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#pnrewzilfs .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#pnrewzilfs .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#pnrewzilfs .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pnrewzilfs .gt_bottom_border {
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pnrewzilfs .gt_col_headings {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pnrewzilfs .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#pnrewzilfs .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#pnrewzilfs .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#pnrewzilfs .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#pnrewzilfs .gt_column_spanner {
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#pnrewzilfs .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#pnrewzilfs .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#pnrewzilfs .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#pnrewzilfs .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#pnrewzilfs .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#pnrewzilfs .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: none;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#pnrewzilfs .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pnrewzilfs .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#pnrewzilfs .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#pnrewzilfs .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#pnrewzilfs .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pnrewzilfs .gt_first_summary_row {
+  border-top-style: none;
+  border-top-color: #D3D3D3;
+}
+
+#pnrewzilfs .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#pnrewzilfs .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pnrewzilfs .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pnrewzilfs .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: none;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#pnrewzilfs .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: none;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pnrewzilfs .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#pnrewzilfs .gt_table_body {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pnrewzilfs .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pnrewzilfs .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pnrewzilfs .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pnrewzilfs .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pnrewzilfs .gt_left {
+  text-align: left;
+}
+
+#pnrewzilfs .gt_center {
+  text-align: center;
+}
+
+#pnrewzilfs .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#pnrewzilfs .gt_font_normal {
+  font-weight: normal;
+}
+
+#pnrewzilfs .gt_font_bold {
+  font-weight: bold;
+}
+
+#pnrewzilfs .gt_font_italic {
+  font-style: italic;
+}
+
+#pnrewzilfs .gt_super {
+  font-size: 65%;
+}
+
+#pnrewzilfs .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#pnrewzilfs .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#pnrewzilfs .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#pnrewzilfs .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#pnrewzilfs .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#pnrewzilfs .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#pnrewzilfs .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#pnrewzilfs .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#pnrewzilfs div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="6" class="gt_heading gt_title gt_font_normal" style="text-align: left; color: #000000; font-weight: bold;">Do sweepers or sliders limit quality batter contact better?</td>
+</tr>
+<tr class="gt_heading even">
+<td colspan="6" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="text-align: left; color: #000000;">Sweepers limit quality contact better than sliders over the past five MLB seasons..</td>
+</tr>
+<tr class="gt_col_headings header">
+<th id="Season...3" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold" scope="col">Season</th>
+<th id="Pitch...2" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold" scope="col">Pitch</th>
+<th id="avg_xwoba...4" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold" scope="col">xwOBA</th>
+<th id="Season...7" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold" scope="col">Season</th>
+<th id="Pitch...6" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold" scope="col">Pitch</th>
+<th id="avg_xwoba...8" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold" scope="col">xwOBA</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_center" headers="Season...3">2021</td>
+<td class="gt_row gt_center" headers="Pitch...2">Sweeper</td>
+<td class="gt_row gt_center" headers="avg_xwoba...4" style="background-color: #FF0000; color: #FFFFFF">0.246</td>
+<td class="gt_row gt_center" headers="Season...7">2021</td>
+<td class="gt_row gt_center" headers="Pitch...6">Slider</td>
+<td class="gt_row gt_center" headers="avg_xwoba...8" style="background-color: #FFBBA5; color: #000000">0.282</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center gt_striped" headers="Season...3">2022</td>
+<td class="gt_row gt_center gt_striped" headers="Pitch...2">Sweeper</td>
+<td class="gt_row gt_center gt_striped" headers="avg_xwoba...4" style="background-color: #FF6342; color: #FFFFFF">0.259</td>
+<td class="gt_row gt_center gt_striped" headers="Season...7">2022</td>
+<td class="gt_row gt_center gt_striped" headers="Pitch...6">Slider</td>
+<td class="gt_row gt_center gt_striped" headers="avg_xwoba...8" style="background-color: #FFAF95; color: #000000">0.279</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Season...3">2023</td>
+<td class="gt_row gt_center" headers="Pitch...2">Sweeper</td>
+<td class="gt_row gt_center" headers="avg_xwoba...4" style="background-color: #FF8969; color: #000000">0.269</td>
+<td class="gt_row gt_center" headers="Season...7">2023</td>
+<td class="gt_row gt_center" headers="Pitch...6">Slider</td>
+<td class="gt_row gt_center" headers="avg_xwoba...8" style="background-color: #FFD9CB; color: #000000">0.291</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center gt_striped" headers="Season...3">2024</td>
+<td class="gt_row gt_center gt_striped" headers="Pitch...2">Sweeper</td>
+<td class="gt_row gt_center gt_striped" headers="avg_xwoba...4" style="background-color: #FF8D6E; color: #000000">0.270</td>
+<td class="gt_row gt_center gt_striped" headers="Season...7">2024</td>
+<td class="gt_row gt_center gt_striped" headers="Pitch...6">Slider</td>
+<td class="gt_row gt_center gt_striped" headers="avg_xwoba...8" style="background-color: #FFD5C6; color: #000000">0.290</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Season...3">2025</td>
+<td class="gt_row gt_center" headers="Pitch...2">Sweeper</td>
+<td class="gt_row gt_center" headers="avg_xwoba...4" style="background-color: #FFA286; color: #000000">0.275</td>
+<td class="gt_row gt_center" headers="Season...7">2025</td>
+<td class="gt_row gt_center" headers="Pitch...6">Slider</td>
+<td class="gt_row gt_center" headers="avg_xwoba...8" style="background-color: #FFFFFF; color: #000000">0.302</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="6" class="gt_sourcenote"><strong>Source:</strong> Baseball Savant | <strong>By:</strong> Gavin Addleman</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+<p>One trend you can see here is that the average xwOBA for each MLB pitcher’s sweeper and slider have both trended up, not in a good way. But even with that upward trend in quality contact on sweepers and sliders, sweepers are still king among the two pitches in limiting quality contact.</p>
+<p>Will the sweeper eventually surpass the slider and become the king of breaking pitches? We’ll just have to wait and see.</p>
 
 
 
  ]]></description>
-  <category>news</category>
-  <category>code</category>
-  <category>analysis</category>
-  <guid>https://your-website-url.example.com/posts/post-with-code/</guid>
-  <pubDate>Mon, 30 Mar 2026 05:00:00 GMT</pubDate>
-  <media:content url="https://your-website-url.example.com/posts/post-with-code/image.jpg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>Welcome To My Blog</title>
-  <dc:creator>Tristan O&#39;Malley</dc:creator>
-  <link>https://your-website-url.example.com/posts/welcome/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p>This is the first post in a Quarto blog. Welcome!</p>
-<p><img src="https://your-website-url.example.com/posts/welcome/thumbnail.jpg" class="img-fluid"></p>
-<p>Since this post doesn’t specify an explicit <code>image</code>, the first image in the post will be used in the listing page of posts.</p>
-
-
-
- ]]></description>
-  <category>news</category>
-  <guid>https://your-website-url.example.com/posts/welcome/</guid>
-  <pubDate>Fri, 27 Mar 2026 05:00:00 GMT</pubDate>
+  <category>baseball</category>
+  <category>pitches</category>
+  <category>pitchers</category>
+  <guid>https://your-website-url.example.com/posts/sweepers-vs-sliders/</guid>
+  <pubDate>Fri, 10 Apr 2026 05:00:00 GMT</pubDate>
+  <media:content url="https://your-website-url.example.com/posts/sweepers-vs-sliders/image.png" medium="image" type="image/png" height="89" width="144"/>
 </item>
 </channel>
 </rss>
