@@ -735,28 +735,23 @@ background-color: null;
 font-style: inherit;">+</span></span>
 <span id="cb1-40">  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">theme_minimal</span>() <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> </span>
-<span id="cb1-41">  <span class="fu" style="color: #4758AB;
-background-color: null;
 font-style: inherit;">labs</span>(</span>
-<span id="cb1-42">    <span class="at" style="color: #657422;
+<span id="cb1-41">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">""</span>,</span>
-<span id="cb1-43">    <span class="at" style="color: #657422;
+<span id="cb1-42">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Sweepers Thrown"</span>,</span>
-<span id="cb1-44">    <span class="at" style="color: #657422;
+<span id="cb1-43">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">title=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Why the great rise in sweeper usage between 2021 and 2025?"</span>, </span>
-<span id="cb1-45">    <span class="at" style="color: #657422;
+<span id="cb1-44">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">subtitle=</span><span class="st" style="color: #20794D;
 background-color: null;
@@ -765,22 +760,22 @@ background-color: null;
 font-style: inherit;">\n</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">starting in 2021. Total sweepers thrown by MLB pitchers as of the end of the 2025 MLB season."</span>,</span>
-<span id="cb1-46">    <span class="at" style="color: #657422;
+<span id="cb1-45">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">caption=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Source: Baseball Savant | By Gavin Addleman"</span>) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb1-47">  <span class="fu" style="color: #4758AB;
+<span id="cb1-46">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">theme_minimal</span>() <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb1-48">  <span class="fu" style="color: #4758AB;
+<span id="cb1-47">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">theme</span>(</span>
-<span id="cb1-49">    <span class="at" style="color: #657422;
+<span id="cb1-48">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">plot.title =</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -793,7 +788,7 @@ background-color: null;
 font-style: inherit;">face =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"bold"</span>),</span>
-<span id="cb1-50">    <span class="at" style="color: #657422;
+<span id="cb1-49">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">axis.title =</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -802,7 +797,7 @@ background-color: null;
 font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">8</span>),</span>
-<span id="cb1-51">    <span class="at" style="color: #657422;
+<span id="cb1-50">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">plot.subtitle =</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -811,7 +806,7 @@ background-color: null;
 font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">9.5</span>),</span>
-<span id="cb1-52">    <span class="at" style="color: #657422;
+<span id="cb1-51">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">axis.text.y =</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -824,7 +819,7 @@ background-color: null;
 font-style: inherit;">hjust=</span>.<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">45</span>),</span>
-<span id="cb1-53">    <span class="at" style="color: #657422;
+<span id="cb1-52">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">axis.text.x =</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -837,12 +832,12 @@ background-color: null;
 font-style: inherit;">hjust=</span><span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0</span>),</span>
-<span id="cb1-54">    <span class="at" style="color: #657422;
+<span id="cb1-53">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">plot.title.position =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"plot"</span></span>
-<span id="cb1-55">  )</span></code></pre></div></div>
+<span id="cb1-54">  )</span></code></pre></div></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -1312,23 +1307,23 @@ background-color: null;
 font-style: inherit;">"center"</span>)</span></code></pre></div></div>
 </details>
 <div class="cell-output-display">
-<div id="pnrewzilfs" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#pnrewzilfs table {
+<div id="zznbpcuzhi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zznbpcuzhi table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#pnrewzilfs thead, #pnrewzilfs tbody, #pnrewzilfs tfoot, #pnrewzilfs tr, #pnrewzilfs td, #pnrewzilfs th {
+#zznbpcuzhi thead, #zznbpcuzhi tbody, #zznbpcuzhi tfoot, #zznbpcuzhi tr, #zznbpcuzhi td, #zznbpcuzhi th {
   border-style: none;
 }
 
-#pnrewzilfs p {
+#zznbpcuzhi p {
   margin: 0;
   padding: 0;
 }
 
-#pnrewzilfs .gt_table {
+#zznbpcuzhi .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1354,12 +1349,12 @@ font-style: inherit;">"center"</span>)</span></code></pre></div></div>
   border-left-color: #D3D3D3;
 }
 
-#pnrewzilfs .gt_caption {
+#zznbpcuzhi .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#pnrewzilfs .gt_title {
+#zznbpcuzhi .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1371,7 +1366,7 @@ font-style: inherit;">"center"</span>)</span></code></pre></div></div>
   border-bottom-width: 0;
 }
 
-#pnrewzilfs .gt_subtitle {
+#zznbpcuzhi .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1383,7 +1378,7 @@ font-style: inherit;">"center"</span>)</span></code></pre></div></div>
   border-top-width: 0;
 }
 
-#pnrewzilfs .gt_heading {
+#zznbpcuzhi .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1395,13 +1390,13 @@ font-style: inherit;">"center"</span>)</span></code></pre></div></div>
   border-right-color: #D3D3D3;
 }
 
-#pnrewzilfs .gt_bottom_border {
+#zznbpcuzhi .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#pnrewzilfs .gt_col_headings {
+#zznbpcuzhi .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1416,7 +1411,7 @@ font-style: inherit;">"center"</span>)</span></code></pre></div></div>
   border-right-color: #D3D3D3;
 }
 
-#pnrewzilfs .gt_col_heading {
+#zznbpcuzhi .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1436,7 +1431,7 @@ font-style: inherit;">"center"</span>)</span></code></pre></div></div>
   overflow-x: hidden;
 }
 
-#pnrewzilfs .gt_column_spanner_outer {
+#zznbpcuzhi .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1448,15 +1443,15 @@ font-style: inherit;">"center"</span>)</span></code></pre></div></div>
   padding-right: 4px;
 }
 
-#pnrewzilfs .gt_column_spanner_outer:first-child {
+#zznbpcuzhi .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#pnrewzilfs .gt_column_spanner_outer:last-child {
+#zznbpcuzhi .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#pnrewzilfs .gt_column_spanner {
+#zznbpcuzhi .gt_column_spanner {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1468,11 +1463,11 @@ font-style: inherit;">"center"</span>)</span></code></pre></div></div>
   width: 100%;
 }
 
-#pnrewzilfs .gt_spanner_row {
+#zznbpcuzhi .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#pnrewzilfs .gt_group_heading {
+#zznbpcuzhi .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1498,7 +1493,7 @@ font-style: inherit;">"center"</span>)</span></code></pre></div></div>
   text-align: left;
 }
 
-#pnrewzilfs .gt_empty_group_heading {
+#zznbpcuzhi .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1513,15 +1508,15 @@ font-style: inherit;">"center"</span>)</span></code></pre></div></div>
   vertical-align: middle;
 }
 
-#pnrewzilfs .gt_from_md > :first-child {
+#zznbpcuzhi .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#pnrewzilfs .gt_from_md > :last-child {
+#zznbpcuzhi .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#pnrewzilfs .gt_row {
+#zznbpcuzhi .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1540,7 +1535,7 @@ font-style: inherit;">"center"</span>)</span></code></pre></div></div>
   overflow-x: hidden;
 }
 
-#pnrewzilfs .gt_stub {
+#zznbpcuzhi .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1553,7 +1548,7 @@ font-style: inherit;">"center"</span>)</span></code></pre></div></div>
   padding-right: 5px;
 }
 
-#pnrewzilfs .gt_stub_row_group {
+#zznbpcuzhi .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1567,15 +1562,15 @@ font-style: inherit;">"center"</span>)</span></code></pre></div></div>
   vertical-align: top;
 }
 
-#pnrewzilfs .gt_row_group_first td {
+#zznbpcuzhi .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#pnrewzilfs .gt_row_group_first th {
+#zznbpcuzhi .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#pnrewzilfs .gt_summary_row {
+#zznbpcuzhi .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1585,16 +1580,16 @@ font-style: inherit;">"center"</span>)</span></code></pre></div></div>
   padding-right: 5px;
 }
 
-#pnrewzilfs .gt_first_summary_row {
+#zznbpcuzhi .gt_first_summary_row {
   border-top-style: none;
   border-top-color: #D3D3D3;
 }
 
-#pnrewzilfs .gt_first_summary_row.thick {
+#zznbpcuzhi .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#pnrewzilfs .gt_last_summary_row {
+#zznbpcuzhi .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1604,7 +1599,7 @@ font-style: inherit;">"center"</span>)</span></code></pre></div></div>
   border-bottom-color: #D3D3D3;
 }
 
-#pnrewzilfs .gt_grand_summary_row {
+#zznbpcuzhi .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1614,7 +1609,7 @@ font-style: inherit;">"center"</span>)</span></code></pre></div></div>
   padding-right: 5px;
 }
 
-#pnrewzilfs .gt_first_grand_summary_row {
+#zznbpcuzhi .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1624,7 +1619,7 @@ font-style: inherit;">"center"</span>)</span></code></pre></div></div>
   border-top-color: #D3D3D3;
 }
 
-#pnrewzilfs .gt_last_grand_summary_row_top {
+#zznbpcuzhi .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1634,11 +1629,11 @@ font-style: inherit;">"center"</span>)</span></code></pre></div></div>
   border-bottom-color: #D3D3D3;
 }
 
-#pnrewzilfs .gt_striped {
+#zznbpcuzhi .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#pnrewzilfs .gt_table_body {
+#zznbpcuzhi .gt_table_body {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1647,7 +1642,7 @@ font-style: inherit;">"center"</span>)</span></code></pre></div></div>
   border-bottom-color: #D3D3D3;
 }
 
-#pnrewzilfs .gt_footnotes {
+#zznbpcuzhi .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1661,7 +1656,7 @@ font-style: inherit;">"center"</span>)</span></code></pre></div></div>
   border-right-color: #D3D3D3;
 }
 
-#pnrewzilfs .gt_footnote {
+#zznbpcuzhi .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1670,7 +1665,7 @@ font-style: inherit;">"center"</span>)</span></code></pre></div></div>
   padding-right: 5px;
 }
 
-#pnrewzilfs .gt_sourcenotes {
+#zznbpcuzhi .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1684,7 +1679,7 @@ font-style: inherit;">"center"</span>)</span></code></pre></div></div>
   border-right-color: #D3D3D3;
 }
 
-#pnrewzilfs .gt_sourcenote {
+#zznbpcuzhi .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1692,72 +1687,72 @@ font-style: inherit;">"center"</span>)</span></code></pre></div></div>
   padding-right: 5px;
 }
 
-#pnrewzilfs .gt_left {
+#zznbpcuzhi .gt_left {
   text-align: left;
 }
 
-#pnrewzilfs .gt_center {
+#zznbpcuzhi .gt_center {
   text-align: center;
 }
 
-#pnrewzilfs .gt_right {
+#zznbpcuzhi .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#pnrewzilfs .gt_font_normal {
+#zznbpcuzhi .gt_font_normal {
   font-weight: normal;
 }
 
-#pnrewzilfs .gt_font_bold {
+#zznbpcuzhi .gt_font_bold {
   font-weight: bold;
 }
 
-#pnrewzilfs .gt_font_italic {
+#zznbpcuzhi .gt_font_italic {
   font-style: italic;
 }
 
-#pnrewzilfs .gt_super {
+#zznbpcuzhi .gt_super {
   font-size: 65%;
 }
 
-#pnrewzilfs .gt_footnote_marks {
+#zznbpcuzhi .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#pnrewzilfs .gt_asterisk {
+#zznbpcuzhi .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#pnrewzilfs .gt_indent_1 {
+#zznbpcuzhi .gt_indent_1 {
   text-indent: 5px;
 }
 
-#pnrewzilfs .gt_indent_2 {
+#zznbpcuzhi .gt_indent_2 {
   text-indent: 10px;
 }
 
-#pnrewzilfs .gt_indent_3 {
+#zznbpcuzhi .gt_indent_3 {
   text-indent: 15px;
 }
 
-#pnrewzilfs .gt_indent_4 {
+#zznbpcuzhi .gt_indent_4 {
   text-indent: 20px;
 }
 
-#pnrewzilfs .gt_indent_5 {
+#zznbpcuzhi .gt_indent_5 {
   text-indent: 25px;
 }
 
-#pnrewzilfs .katex-display {
+#zznbpcuzhi .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#pnrewzilfs div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#zznbpcuzhi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>

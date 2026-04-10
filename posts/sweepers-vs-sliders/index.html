@@ -241,22 +241,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">data=</span>pre_sweeper, <span class="fu">aes</span>(<span class="at">x=</span>Season, <span class="at">weight=</span>pitches), <span class="at">fill=</span><span class="st">"lightgrey"</span>) <span class="sc">+</span></span>
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">data=</span>post_sweeper, <span class="fu">aes</span>(<span class="at">x=</span>Season, <span class="at">weight=</span>pitches), <span class="at">fill=</span><span class="st">"darkred"</span>) <span class="sc">+</span></span>
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">""</span>,</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Sweepers Thrown"</span>,</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">title=</span><span class="st">"Why the great rise in sweeper usage between 2021 and 2025?"</span>, </span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle=</span><span class="st">"After stagnating in the 2010s, the first years with min. 100 sweepers thrown, the number of sweepers thrown exploded</span><span class="sc">\n</span><span class="st">starting in 2021. Total sweepers thrown by MLB pitchers as of the end of the 2025 MLB season."</span>,</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption=</span><span class="st">"Source: Baseball Savant | By Gavin Addleman"</span>) <span class="sc">+</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>),</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fl">9.5</span>),</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">hjust=</span>.<span class="dv">45</span>),</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">hjust=</span><span class="dv">0</span>),</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title.position =</span> <span class="st">"plot"</span></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">""</span>,</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Sweepers Thrown"</span>,</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">title=</span><span class="st">"Why the great rise in sweeper usage between 2021 and 2025?"</span>, </span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle=</span><span class="st">"After stagnating in the 2010s, the first years with min. 100 sweepers thrown, the number of sweepers thrown exploded</span><span class="sc">\n</span><span class="st">starting in 2021. Total sweepers thrown by MLB pitchers as of the end of the 2025 MLB season."</span>,</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption=</span><span class="st">"Source: Baseball Savant | By Gavin Addleman"</span>) <span class="sc">+</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>),</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fl">9.5</span>),</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">hjust=</span>.<span class="dv">45</span>),</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">hjust=</span><span class="dv">0</span>),</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title.position =</span> <span class="st">"plot"</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -358,23 +357,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="st">"center"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="pnrewzilfs" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#pnrewzilfs table {
+<div id="zznbpcuzhi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zznbpcuzhi table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#pnrewzilfs thead, #pnrewzilfs tbody, #pnrewzilfs tfoot, #pnrewzilfs tr, #pnrewzilfs td, #pnrewzilfs th {
+#zznbpcuzhi thead, #zznbpcuzhi tbody, #zznbpcuzhi tfoot, #zznbpcuzhi tr, #zznbpcuzhi td, #zznbpcuzhi th {
   border-style: none;
 }
 
-#pnrewzilfs p {
+#zznbpcuzhi p {
   margin: 0;
   padding: 0;
 }
 
-#pnrewzilfs .gt_table {
+#zznbpcuzhi .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -400,12 +399,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#pnrewzilfs .gt_caption {
+#zznbpcuzhi .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#pnrewzilfs .gt_title {
+#zznbpcuzhi .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -417,7 +416,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#pnrewzilfs .gt_subtitle {
+#zznbpcuzhi .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -429,7 +428,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#pnrewzilfs .gt_heading {
+#zznbpcuzhi .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -441,13 +440,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#pnrewzilfs .gt_bottom_border {
+#zznbpcuzhi .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#pnrewzilfs .gt_col_headings {
+#zznbpcuzhi .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -462,7 +461,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#pnrewzilfs .gt_col_heading {
+#zznbpcuzhi .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -482,7 +481,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#pnrewzilfs .gt_column_spanner_outer {
+#zznbpcuzhi .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -494,15 +493,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#pnrewzilfs .gt_column_spanner_outer:first-child {
+#zznbpcuzhi .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#pnrewzilfs .gt_column_spanner_outer:last-child {
+#zznbpcuzhi .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#pnrewzilfs .gt_column_spanner {
+#zznbpcuzhi .gt_column_spanner {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -514,11 +513,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#pnrewzilfs .gt_spanner_row {
+#zznbpcuzhi .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#pnrewzilfs .gt_group_heading {
+#zznbpcuzhi .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -544,7 +543,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#pnrewzilfs .gt_empty_group_heading {
+#zznbpcuzhi .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -559,15 +558,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#pnrewzilfs .gt_from_md > :first-child {
+#zznbpcuzhi .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#pnrewzilfs .gt_from_md > :last-child {
+#zznbpcuzhi .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#pnrewzilfs .gt_row {
+#zznbpcuzhi .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -586,7 +585,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#pnrewzilfs .gt_stub {
+#zznbpcuzhi .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -599,7 +598,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#pnrewzilfs .gt_stub_row_group {
+#zznbpcuzhi .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -613,15 +612,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#pnrewzilfs .gt_row_group_first td {
+#zznbpcuzhi .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#pnrewzilfs .gt_row_group_first th {
+#zznbpcuzhi .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#pnrewzilfs .gt_summary_row {
+#zznbpcuzhi .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -631,16 +630,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#pnrewzilfs .gt_first_summary_row {
+#zznbpcuzhi .gt_first_summary_row {
   border-top-style: none;
   border-top-color: #D3D3D3;
 }
 
-#pnrewzilfs .gt_first_summary_row.thick {
+#zznbpcuzhi .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#pnrewzilfs .gt_last_summary_row {
+#zznbpcuzhi .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -650,7 +649,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#pnrewzilfs .gt_grand_summary_row {
+#zznbpcuzhi .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -660,7 +659,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#pnrewzilfs .gt_first_grand_summary_row {
+#zznbpcuzhi .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -670,7 +669,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#pnrewzilfs .gt_last_grand_summary_row_top {
+#zznbpcuzhi .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -680,11 +679,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#pnrewzilfs .gt_striped {
+#zznbpcuzhi .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#pnrewzilfs .gt_table_body {
+#zznbpcuzhi .gt_table_body {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -693,7 +692,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#pnrewzilfs .gt_footnotes {
+#zznbpcuzhi .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -707,7 +706,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#pnrewzilfs .gt_footnote {
+#zznbpcuzhi .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -716,7 +715,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#pnrewzilfs .gt_sourcenotes {
+#zznbpcuzhi .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -730,7 +729,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#pnrewzilfs .gt_sourcenote {
+#zznbpcuzhi .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -738,72 +737,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#pnrewzilfs .gt_left {
+#zznbpcuzhi .gt_left {
   text-align: left;
 }
 
-#pnrewzilfs .gt_center {
+#zznbpcuzhi .gt_center {
   text-align: center;
 }
 
-#pnrewzilfs .gt_right {
+#zznbpcuzhi .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#pnrewzilfs .gt_font_normal {
+#zznbpcuzhi .gt_font_normal {
   font-weight: normal;
 }
 
-#pnrewzilfs .gt_font_bold {
+#zznbpcuzhi .gt_font_bold {
   font-weight: bold;
 }
 
-#pnrewzilfs .gt_font_italic {
+#zznbpcuzhi .gt_font_italic {
   font-style: italic;
 }
 
-#pnrewzilfs .gt_super {
+#zznbpcuzhi .gt_super {
   font-size: 65%;
 }
 
-#pnrewzilfs .gt_footnote_marks {
+#zznbpcuzhi .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#pnrewzilfs .gt_asterisk {
+#zznbpcuzhi .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#pnrewzilfs .gt_indent_1 {
+#zznbpcuzhi .gt_indent_1 {
   text-indent: 5px;
 }
 
-#pnrewzilfs .gt_indent_2 {
+#zznbpcuzhi .gt_indent_2 {
   text-indent: 10px;
 }
 
-#pnrewzilfs .gt_indent_3 {
+#zznbpcuzhi .gt_indent_3 {
   text-indent: 15px;
 }
 
-#pnrewzilfs .gt_indent_4 {
+#zznbpcuzhi .gt_indent_4 {
   text-indent: 20px;
 }
 
-#pnrewzilfs .gt_indent_5 {
+#zznbpcuzhi .gt_indent_5 {
   text-indent: 25px;
 }
 
-#pnrewzilfs .katex-display {
+#zznbpcuzhi .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#pnrewzilfs div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#zznbpcuzhi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
