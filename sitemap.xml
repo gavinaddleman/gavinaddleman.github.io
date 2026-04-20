@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://your-website-url.example.com/about.html</loc>
+    <loc>https://gavinaddleman.github.io/about.html</loc>
     <lastmod>2026-03-30T18:47:18.624Z</lastmod>
   </url>
   <url>
-    <loc>https://your-website-url.example.com/posts/sweepers-vs-sliders/index.html</loc>
-    <lastmod>2026-04-13T13:21:38.620Z</lastmod>
-  </url>
-  <url>
-    <loc>https://your-website-url.example.com/index.html</loc>
-    <lastmod>2026-03-30T18:50:02.391Z</lastmod>
+    <loc>https://gavinaddleman.github.io/posts/sweepers-vs-sliders/index.html</loc>
+    <lastmod>2026-04-20T16:47:54.296Z</lastmod>
   </url>
   <url>
     <loc>https://gavinaddleman.github.io/index.html</loc>
     <lastmod>2026-03-30T18:50:02.391Z</lastmod>
-  </url>
-  <url>
-    <loc>https://gavinaddleman.github.io/posts/sweepers-vs-sliders/index.html</loc>
-    <lastmod>2026-04-13T13:21:38.620Z</lastmod>
   </url>
 </urlset>
