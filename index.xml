@@ -10,7 +10,1454 @@
 <atom:link href="https://gavinaddleman.github.io/index.xml" rel="self" type="application/rss+xml"/>
 <description>A website about sports and sports data</description>
 <generator>quarto-1.9.36</generator>
-<lastBuildDate>Fri, 10 Apr 2026 05:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sat, 25 Apr 2026 05:00:00 GMT</lastBuildDate>
+<item>
+  <title>Should Lavonte David be a the Pro Football Hall of Famer?</title>
+  <dc:creator>Gavin Addleman</dc:creator>
+  <link>https://gavinaddleman.github.io/posts/lavonte-david-hof/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Being a Pro Football Hall of Famer takes a lot of things to go right, you likely have to play extremely well, have a long and consistent career, be recognized throughout your career for being good at what you do and, at times, just be on a good team. Lavonte David hits almost all of those boxes, he played his position, linebacker, extremely well over a 14-year career, but he went most of his career as an underrated player on a largely mediocre Tampa Bay team that only went to the playoffs five times in his lengthy career, albeit with a Super Bowl win in 2020.</p>
+<p>Throughout his career, David consistently performed as one of the top linebackers in the NFL, but he wasn’t awarded as such throughout his career, thanks to other big name and great linebackers, as well as a very limited number of linebackers on the All-Pro and Pro Bowl teams.</p>
+<p>Should the former Buccaneer great be inducted into the Pro Football Hall of Fame? Let’s see what the numbers say.</p>
+<p>When you look at his career production, David had a very similar career to most of the linebackers in the Pro Football Hall of Fame. He both had a very productive career, while also playing at a consistent, high-level for 14 years.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(tidyverse)</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggrepel)</span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(gt)</span>
+<span id="cb1-4"></span>
+<span id="cb1-5">olb <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_csv</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"nfl_olb_stats.csv"</span>)</span>
+<span id="cb1-6">david <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Lavonte David"</span>)</span>
+<span id="cb1-7">hof_olb <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Lawrence Taylor"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Derrick Brooks"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Jack Ham"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Ted Hendricks"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Dave Wilcox"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Robert Brazile"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Andre Tippett"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Chris Hanburger"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Chuck Howley"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Dave Robinson"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Rickey Jackson"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"DeMarcus Ware"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Kevin Greene"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Derrick Thomas"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Bobby Bell"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Junior Seau"</span>)</span>
+<span id="cb1-8">top_hof <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Lawrence Taylor"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Derrick Brooks"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Junior Seau"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Rickey Jackson"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Ted Hendricks"</span>)</span>
+<span id="cb1-9">kg <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Kevin Greene"</span>)</span>
+<span id="cb1-10">hof_gt <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Lavonte David"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Derrick Brooks"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Junior Seau"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"DeMarcus Ware"</span>)</span>
+<span id="cb1-11">olb <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> olb <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">SeasonsPlayed =</span> LastSeason <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> FirstSeason <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb1-12">ld <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> olb <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(Player <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%in%</span> david)</span>
+<span id="cb1-13">hof <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> olb <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(Player <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%in%</span> hof_olb) </span>
+<span id="cb1-14">top_hof <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> olb <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(Player <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%in%</span> top_hof) </span>
+<span id="cb1-15">kgreene <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> olb <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(Player <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%in%</span> kg)</span>
+<span id="cb1-16">hof_ld <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">bind_rows</span>(hof, ld)</span>
+<span id="cb1-17">tack_hof_ld <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> hof_ld <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(LastSeason <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1994</span>)</span>
+<span id="cb1-18">hof_ld_gt <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> hof_ld <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(Player <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%in%</span> hof_gt) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb1-19">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">select</span>(Player, PassesDefended, Sack, AstTack, TFL) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb1-20">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">arrange</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">desc</span>(AstTack))</span>
+<span id="cb1-21"></span>
+<span id="cb1-22"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-23">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data=</span>olb, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span>Games, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span>wAV, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> SeasonsPlayed), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"lightgrey"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">alpha =</span> .<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-24">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data=</span>hof, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span>Games, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span>wAV, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> SeasonsPlayed), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#013369"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-25">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data=</span>ld, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span>Games, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span>wAV, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> SeasonsPlayed), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#D50A0A"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-26"> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text_repel</span>(</span>
+<span id="cb1-27">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data=</span>ld, </span>
+<span id="cb1-28">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">208</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">83</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label=</span>Player)</span>
+<span id="cb1-29">    ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-30">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(</span>
+<span id="cb1-31">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Career Games Played"</span>,</span>
+<span id="cb1-32">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"wAV"</span>,</span>
+<span id="cb1-33">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"How well did Lavonte David play compared to current Hall of Famers?"</span>, </span>
+<span id="cb1-34">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">subtitle=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"The former NFL linebacker has a Weighted Career Approximate Value (wAV) similar to the current Hall of Fame</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">linebackers (blue). wAV approximates a player's career value through games played, stats and accolades."</span>,</span>
+<span id="cb1-35">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Seasons Played"</span>,</span>
+<span id="cb1-36">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Source: Pro Football Reference | By Gavin Addleman"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-37">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">guides</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size=</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">guide_legend</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">override.aes =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"black"</span>)))<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-38">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_minimal</span>()<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-39">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(</span>
+<span id="cb1-40">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">15</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">face =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>),</span>
+<span id="cb1-41">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span>),</span>
+<span id="cb1-42">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.subtitle =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>),</span>
+<span id="cb1-43">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.text.y =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">hjust=</span>.<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">45</span>),</span>
+<span id="cb1-44">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.text.x =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">hjust=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>),</span>
+<span id="cb1-45">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.title.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"plot"</span></span>
+<span id="cb1-46">    )</span></code></pre></div></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://gavinaddleman.github.io/posts/lavonte-david-hof/index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The former Tampa Bay linebacker played at a high-level for a length of time that both separate him from the rest of the pack of NFL linebackers. He is both among current Hall of Fame linebackers like Derrick Brooks, Kevin Greene and Jack Ham, as well as likely Hall of Famers like Terrell Suggs, Von Miller and Khalil Mack.</p>
+<p>One of David’s strengths throughout his career was his ability to tackle in space. Not only could he get solo tackles and bring down opposing players on his own, he excelled at bringing down players alongside his teammates.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb2-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_segment</span>(</span>
+<span id="cb2-3">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data=</span>tack_hof_ld, </span>
+<span id="cb2-4">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(</span>
+<span id="cb2-5">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">reorder</span>(Player, CombTack), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">yend=</span>Player,</span>
+<span id="cb2-6">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span>AstTack, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xend=</span>CombTack),</span>
+<span id="cb2-7">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"lightgrey"</span>,</span>
+<span id="cb2-8">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">linewidth =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span></span>
+<span id="cb2-9">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb2-10">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_segment</span>(</span>
+<span id="cb2-11">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data=</span>ld, </span>
+<span id="cb2-12">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(</span>
+<span id="cb2-13">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">reorder</span>(Player, CombTack), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">yend=</span>Player,</span>
+<span id="cb2-14">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span>AstTack, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xend=</span>CombTack),</span>
+<span id="cb2-15">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"black"</span>,</span>
+<span id="cb2-16">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">linewidth =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span></span>
+<span id="cb2-17">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb2-18">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>(</span>
+<span id="cb2-19">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data=</span>tack_hof_ld,</span>
+<span id="cb2-20">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(</span>
+<span id="cb2-21">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span>Player,</span>
+<span id="cb2-22">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span>AstTack,</span>
+<span id="cb2-23">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Assisted Tackles"</span></span>
+<span id="cb2-24">    ),</span>
+<span id="cb2-25">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span></span>
+<span id="cb2-26">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb2-27">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>(</span>
+<span id="cb2-28">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data=</span>tack_hof_ld,</span>
+<span id="cb2-29">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(</span>
+<span id="cb2-30">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span>Player,</span>
+<span id="cb2-31">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span>CombTack,</span>
+<span id="cb2-32">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Total Tackles"</span></span>
+<span id="cb2-33">    ),</span>
+<span id="cb2-34">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span></span>
+<span id="cb2-35">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb2-36">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_color_manual</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">name=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Tackle Type"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values=</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#013369"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#D50A0A"</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-37">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(</span>
+<span id="cb2-38">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">""</span>,</span>
+<span id="cb2-39">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">""</span>,</span>
+<span id="cb2-40">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Was Lavonte David a Hall of Fame-caliber tackler?"</span>, </span>
+<span id="cb2-41">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">subtitle=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"The former Buccaneer has the most assisted tackles of current Hall of Famers who played since 1994, the first</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">consistent year of NFL tackle stat tracking. David was as good of a tackler as many current Hall of Famers."</span>,</span>
+<span id="cb2-42">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Source: Pro Football Reference | By Gavin Addleman"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-43">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_minimal</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-44">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(</span>
+<span id="cb2-45">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">16</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">face =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>),</span>
+<span id="cb2-46">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span>),</span>
+<span id="cb2-47">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.subtitle =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>),</span>
+<span id="cb2-48">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.text.y =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">hjust=</span>.<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">45</span>),</span>
+<span id="cb2-49">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.text.x =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">hjust=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>),</span>
+<span id="cb2-50">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.title.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"plot"</span></span>
+<span id="cb2-51">  )</span></code></pre></div></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://gavinaddleman.github.io/posts/lavonte-david-hof/index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The former Husker was the definition of a team player, a guy that knew his role and excelled in it. David shows through his tackling numbers that he would do everything he could to help his team win.</p>
+<p>David was a rarity at the linebacker position, as he excelled at tackling, rushing the quarterback and pass coverage. Excelling at a multitude of skills and statistical categories are both paramount to not just having a great and memorable career, but also to be elected to the Pro Football Hall of Fame.</p>
+<p>Good news for David, he fits that mold very well.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">hof_ld_gt <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb3-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gt</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb3-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cols_label</span>(</span>
+<span id="cb3-4">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Player =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">""</span>,</span>
+<span id="cb3-5">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">PassesDefended =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Passes Defended"</span>,</span>
+<span id="cb3-6">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">AstTack =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Assisted Tackles"</span>,</span>
+<span id="cb3-7">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Sack =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Sacks"</span></span>
+<span id="cb3-8">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cols_align</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">align =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"center"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">columns=</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>Player) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb3-10">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tab_header</span>(</span>
+<span id="cb3-11">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Lavonte David stacks up well with Hall of Fame competition in key stats"</span>,</span>
+<span id="cb3-12">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">subtitle =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"The Nebraska alum's stats are very comprable, and better in some categories, to fellow former Tampa Bay Buccaneers linebacker</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">and Hall of Famer Derrick Brooks. David had more tackles for loss (TFL) than all Hall of Fame Linebackers."</span></span>
+<span id="cb3-13">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tab_style</span>(</span>
+<span id="cb3-14">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">style =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cell_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"black"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">weight =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">align =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"left"</span>),</span>
+<span id="cb3-15">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">locations =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cells_title</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"title"</span>)</span>
+<span id="cb3-16">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tab_style</span>(</span>
+<span id="cb3-17">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">style =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cell_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"black"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">align =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"left"</span>),</span>
+<span id="cb3-18">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">locations =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cells_title</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"subtitle"</span>)</span>
+<span id="cb3-19">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-20">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tab_source_note</span>(</span>
+<span id="cb3-21">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">source_note =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">md</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"**Source:** Pro Football Reference  |  **By:** Gavin Addleman"</span>)</span>
+<span id="cb3-22">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-23">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tab_style</span>(</span>
+<span id="cb3-24">     <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">locations =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cells_column_labels</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">columns =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">everything</span>()),</span>
+<span id="cb3-25">     <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">style =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(</span>
+<span id="cb3-26">       <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cell_borders</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sides =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bottom"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">weight =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">px</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>)),</span>
+<span id="cb3-27">       <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cell_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">weight =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span>)</span>
+<span id="cb3-28">     )</span>
+<span id="cb3-29">   ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-30">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">opt_row_striping</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb3-31">   <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">opt_table_lines</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-32">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tab_style</span>(</span>
+<span id="cb3-33">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">style =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(</span>
+<span id="cb3-34">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cell_fill</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#D50A0A"</span>),</span>
+<span id="cb3-35">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cell_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"white"</span>)</span>
+<span id="cb3-36">      ),</span>
+<span id="cb3-37">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">locations =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cells_body</span>(</span>
+<span id="cb3-38">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">rows =</span> Player <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Lavonte David"</span>)</span>
+<span id="cb3-39">  )</span></code></pre></div></div>
+</details>
+<div class="cell-output-display">
+<div id="lcdrtwtupr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#lcdrtwtupr table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#lcdrtwtupr thead, #lcdrtwtupr tbody, #lcdrtwtupr tfoot, #lcdrtwtupr tr, #lcdrtwtupr td, #lcdrtwtupr th {
+  border-style: none;
+}
+
+#lcdrtwtupr p {
+  margin: 0;
+  padding: 0;
+}
+
+#lcdrtwtupr .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#lcdrtwtupr .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#lcdrtwtupr .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#lcdrtwtupr .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#lcdrtwtupr .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#lcdrtwtupr .gt_bottom_border {
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lcdrtwtupr .gt_col_headings {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#lcdrtwtupr .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#lcdrtwtupr .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#lcdrtwtupr .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#lcdrtwtupr .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#lcdrtwtupr .gt_column_spanner {
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#lcdrtwtupr .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#lcdrtwtupr .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#lcdrtwtupr .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#lcdrtwtupr .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#lcdrtwtupr .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#lcdrtwtupr .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: none;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#lcdrtwtupr .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lcdrtwtupr .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#lcdrtwtupr .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#lcdrtwtupr .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#lcdrtwtupr .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lcdrtwtupr .gt_first_summary_row {
+  border-top-style: none;
+  border-top-color: #D3D3D3;
+}
+
+#lcdrtwtupr .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#lcdrtwtupr .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lcdrtwtupr .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lcdrtwtupr .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: none;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#lcdrtwtupr .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: none;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lcdrtwtupr .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#lcdrtwtupr .gt_table_body {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lcdrtwtupr .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#lcdrtwtupr .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lcdrtwtupr .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#lcdrtwtupr .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lcdrtwtupr .gt_left {
+  text-align: left;
+}
+
+#lcdrtwtupr .gt_center {
+  text-align: center;
+}
+
+#lcdrtwtupr .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#lcdrtwtupr .gt_font_normal {
+  font-weight: normal;
+}
+
+#lcdrtwtupr .gt_font_bold {
+  font-weight: bold;
+}
+
+#lcdrtwtupr .gt_font_italic {
+  font-style: italic;
+}
+
+#lcdrtwtupr .gt_super {
+  font-size: 65%;
+}
+
+#lcdrtwtupr .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#lcdrtwtupr .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#lcdrtwtupr .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#lcdrtwtupr .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#lcdrtwtupr .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#lcdrtwtupr .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#lcdrtwtupr .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#lcdrtwtupr .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#lcdrtwtupr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="5" class="gt_heading gt_title gt_font_normal" style="text-align: left; color: #000000; font-weight: bold;">Lavonte David stacks up well with Hall of Fame competition in key stats</td>
+</tr>
+<tr class="gt_heading even">
+<td colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="text-align: left; color: #000000;">The Nebraska alum's stats are very comprable, and better in some categories, to fellow former Tampa Bay Buccaneers linebacker and Hall of Famer Derrick Brooks. David had more tackles for loss (TFL) than all Hall of Fame Linebackers.</td>
+</tr>
+<tr class="gt_col_headings header">
+<th id="Player" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold" scope="col"></th>
+<th id="PassesDefended" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold" scope="col">Passes Defended</th>
+<th id="Sack" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold" scope="col">Sacks</th>
+<th id="AstTack" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold" scope="col">Assisted Tackles</th>
+<th id="TFL" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold" scope="col">TFL</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Player" style="background-color: #D50A0A; color: #FFFFFF">Lavonte David</td>
+<td class="gt_row gt_center" headers="PassesDefended" style="background-color: #D50A0A; color: #FFFFFF">73</td>
+<td class="gt_row gt_center" headers="Sack" style="background-color: #D50A0A; color: #FFFFFF">42.5</td>
+<td class="gt_row gt_center" headers="AstTack" style="background-color: #D50A0A; color: #FFFFFF">544</td>
+<td class="gt_row gt_center" headers="TFL" style="background-color: #D50A0A; color: #FFFFFF">177</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Player">Derrick Brooks</td>
+<td class="gt_row gt_center gt_striped" headers="PassesDefended">84</td>
+<td class="gt_row gt_center gt_striped" headers="Sack">13.5</td>
+<td class="gt_row gt_center gt_striped" headers="AstTack">413</td>
+<td class="gt_row gt_center gt_striped" headers="TFL">68</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Player">Junior Seau</td>
+<td class="gt_row gt_center" headers="PassesDefended">43</td>
+<td class="gt_row gt_center" headers="Sack">56.5</td>
+<td class="gt_row gt_center" headers="AstTack">325</td>
+<td class="gt_row gt_center" headers="TFL">80</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Player">DeMarcus Ware</td>
+<td class="gt_row gt_center gt_striped" headers="PassesDefended">25</td>
+<td class="gt_row gt_center gt_striped" headers="Sack">138.5</td>
+<td class="gt_row gt_center gt_striped" headers="AstTack">152</td>
+<td class="gt_row gt_center gt_striped" headers="TFL">171</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="5" class="gt_sourcenote"><strong>Source:</strong> Pro Football Reference | <strong>By:</strong> Gavin Addleman</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+<p>The Miami-native was as good in many key statistics as some of the top Hall of Famers at the linebacker position. First, he was as good in pass coverage as fellow former Buccaneer linebacker Derrick Brooks, while also combining the sack potential of Junior Seau and was both having higher assisted tackle and tackle for loss (TFL) numbers than all current Hall of Fame linebackers.</p>
+<p>So the answer is yes, if you look at the statistics, Lavonte David should be elected to the Pro Football Hall of Fame.</p>
+
+
+
+ ]]></description>
+  <category>football</category>
+  <category>NFL</category>
+  <category>Hall of Fame</category>
+  <guid>https://gavinaddleman.github.io/posts/lavonte-david-hof/</guid>
+  <pubDate>Sat, 25 Apr 2026 05:00:00 GMT</pubDate>
+  <media:content url="https://gavinaddleman.github.io/posts/lavonte-david-hof/image.png" medium="image" type="image/png" height="101" width="144"/>
+</item>
 <item>
   <title>Are sweepers and sliders really different pitches?</title>
   <dc:creator>Gavin Addleman</dc:creator>
